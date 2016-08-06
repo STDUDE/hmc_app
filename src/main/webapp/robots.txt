@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /admin
+Disallow: /admin/**
+Disallow: /hmc/proposal
+Disallow: /hmc/proposalSingle
+Disallow: /hmc/compare
+
+Host: hmccnc.com
+Sitemap: http://hmccnc.com/sitemap.xml

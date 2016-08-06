@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:mysql://localhost:3306</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">123123</property>
+        <property name="show_sql">true</property>
+
+        <mapping class="com.springapp.mvc.domain.hmc.MachineLocationFilter"/>
+        <mapping class="com.springapp.mvc.domain.hmc.Hmc"/>
+        <mapping class="com.springapp.mvc.domain.hmc.SlidersFilter"/>
+        <mapping class="com.springapp.mvc.domain.hmc.SystemCNCFilter"/>
+        <mapping class="com.springapp.mvc.domain.hmc.BrandFilter"/>
+
+        <mapping class="com.springapp.mvc.domain.MachineOrder"/>
+        <mapping class="com.springapp.mvc.domain.User"/>
+
+        <mapping class="com.springapp.mvc.domain.common.LanguageEntity"/>
+
+        <mapping class="com.springapp.mvc.domain.lathe.BrandLatheFilterEntity"/>
+        <mapping class="com.springapp.mvc.domain.lathe.MachineLocationLatheFilterEntity"/>
+        <mapping class="com.springapp.mvc.domain.lathe.SlidersLatheFilterEntity"/>
+        <mapping class="com.springapp.mvc.domain.lathe.SystemCncLatheFilterEntity"/>
+        <mapping class="com.springapp.mvc.domain.lathe.LatheFullEntity"/>
+        <mapping class="com.springapp.mvc.domain.lathe.LatheLangFullEntity"/>
+        <mapping class="com.springapp.mvc.domain.lathe.LatheLangShortEntity"/>
+        <mapping class="com.springapp.mvc.domain.lathe.LatheShortEntity"/>
+
+    </session-factory>
+</hibernate-configuration>

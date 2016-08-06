@@ -1,0 +1,53 @@
+<?xml  version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jee="http://www.springframework.org/schema/jee" xmlns:lang="http://www.springframework.org/schema/lang"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!-- Root Context: определяет ресурсы, доступные всему приложению, всем сервлетам -->
+
+    <!-- Включаем опцию использования конфигурационных аннотаций (@Annotation-based configuration)-->
+    <context:annotation-config />
+
+    <!-- Определяем папки, в которых будем автоматически искать бины-компоненты (@Component, @Service)  -->
+    <context:component-scan base-package="com.springapp.mvc.dao" />
+    <context:component-scan base-package="com.springapp.mvc.service" />
+    <context:component-scan base-package="com.springapp.mvc.util" />
+
+    <!-- Файл с настройками ресурсов для работы с данными (Data Access Resources) -->
+    <import resource="data.xml" />
+
+    <!-- Файл с настройками безопасности -->
+    <import resource="security.xml" />
+
+    <!-- Java Mail Configuration -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="username" value="${java.mail.username}"/>
+        <property name="password" value="${java.mail.password}"/>
+        <property name="port" value="465"/>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.smtp.starttls.required">true</prop>
+                <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+                <prop key="mail.smtp.host">${java.mail.host}</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- Velocity Email Template Config Bean -->
+    <bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+        <property name="resourceLoaderPath" value="/WEB-INF/emailTemplates/"/>
+    </bean>
+
+</beans>
